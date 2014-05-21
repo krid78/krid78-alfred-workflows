@@ -1,16 +1,27 @@
 #!/bin/bash
 
-dot_clean -m --keep=mostrecent "$@"
+DRIVE="{query}"
 
-find "$@" -name ".DS_Store" -exec rm {} \;
+# hack to allow running from commandline
+if [[ "${DRIVE}" = "" ]]; then
+  DRIVE="${1}"
+fi
 
-rm -f "$@"/.VolumeIcon.icns
-rm -Rf "$@"/.fseventsd
-rm -Rf "$@"/.TemporaryItems
-rm -Rf "$@"/.Spotlight-V100
-rm -Rf "$@"/.Trashes
+dot_clean -m --keep=mostrecent "${DRIVE}"
 
-diskutil eject "$@">/dev/null
+find "${DRIVE}" -name ".DS_Store" -exec rm {} \;
 
-# vim: ts=2:sw=2:tw=80:fileformat=unix
-# vim: comments& comments+=b\:# formatoptions& formatoptions+=or
+rm -f "${DRIVE}"/.VolumeIcon.icns
+rm -Rf "${DRIVE}"/.fseventsd
+rm -Rf "${DRIVE}"/.TemporaryItems
+rm -Rf "${DRIVE}"/.Spotlight-V100
+rm -Rf "${DRIVE}"/.Trashes
+
+RET=$(diskutil eject "${DRIVE}" 2>&1)
+
+if [[ $? -ne 0 ]]; then
+  echo "${RET}"
+  exit 1
+fi
+
+exit 0
