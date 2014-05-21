@@ -1,6 +1,5 @@
 #!/bin/bash
 # Author(s)     :  Daniel Kriesten
-# Email         :  daniel.kriesten@etit.tu-chemnitz.de
 # Creation Date :  Mi 21 Mai 11:48:22 2014
 ########################################################################
 
