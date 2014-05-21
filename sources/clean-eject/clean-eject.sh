@@ -1,13 +1,16 @@
 #!/bin/bash
 
-DRIVE="{query}"
-
-# hack to allow running from commandline
-if [[ "${DRIVE}" = "{query}" ]]; then
-  DRIVE="${1}"
-fi
+# hack to allow testing on commandline
+TMP="{query}"
+DRIVE="${1:-$TMP}"
 
 if [[ "$DRIVE" = "" ]]; then
+  echo "No Drive Given"
+  exit 1
+fi
+
+if [[ ! -d "${DRIVE}" ]]; then
+  echo "Not a directory"
   exit 1
 fi
 
