@@ -6,7 +6,7 @@
 QUERY="{query}"
 
 # comma seperated list of fs-types, e.g msdos,afpfs
-FSTYPE_LIST="msdos,afpfs"
+FSTYPE_LIST="msdos,exfat,afpfs"
 
 MOUNTLIST=$(mount -t ${FSTYPE_LIST} 2>/dev/null |while read i; do echo ${i% \(*}; done)
 
