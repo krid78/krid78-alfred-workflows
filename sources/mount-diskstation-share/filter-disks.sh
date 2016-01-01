@@ -12,7 +12,7 @@ FSTYPE="afpfs"
 MOUNTED_LIST=$(mount -t ${FSTYPE} 2>/dev/null |while read i; do echo ${i%% *}; done)
 
 # the shares
-SHARES_LIST="audiobooks data Documents DVD-Images home music photo video"
+SHARES_LIST="audiobooks data Documents Dropbox DVD-Images home music photo video"
 
 # Initial for XML
 OUTPUT="<?xml version=\"1.0\"?>"
