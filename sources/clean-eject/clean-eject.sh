@@ -16,7 +16,7 @@ fi
 
 dot_clean -m --keep=mostrecent "${DRIVE}"
 
-find "${DRIVE}" -name ".DS_Store" -exec rm {} \; 2>/dev/null
+find "${DRIVE}" -name \( ".DS_Store" -or -name "Thumbs.db" \) -exec rm {} \; 2>/dev/null
 
 rm -f "${DRIVE}"/.VolumeIcon.icns
 rm -f "${DRIVE}"/.apdisk
